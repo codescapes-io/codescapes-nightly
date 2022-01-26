@@ -1,0 +1,23 @@
+{
+  "appId": "com.electron.codescapes",
+  "productName": "Codescapes",
+  "copyright": "Copyright © KeDA-Tech",
+  "artifactName": "${productName}_${version}_${os}_${arch}-setup.${ext}",
+  "files": [
+    "build/**/*",
+    "node_modules/**/*"
+  ],
+  "directories": {
+    "buildResources": "resources"
+  },
+  "win": {
+    "target": [
+      "nsis"
+    ],
+    "publish": {
+      "provider": "s3",
+      "bucket": "codescapes-build",
+      "region": "ap-southeast-1"
+    }
+  }
+}
