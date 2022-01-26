@@ -25,7 +25,7 @@ jobs:
         with:
           repository: 'codescapes-io/codescapes'
           fetch-depth: 0
-          ssh-key: ${{ secrets.PRIVATE_SSH_KEY }}
+          token: ${{ secrets.PA_TOKEN }}
         if: github.event.inputs.git-ref == ''
         
       - name: Clone Repository (Custom Ref)
