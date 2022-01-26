@@ -72,6 +72,9 @@ jobs:
           github_token: ${{ secrets.github_token }}
           package_root: ./packages/cs-electron/
           args: -p onTagOrDraft
+        env:
+          CHANNEL: preview
+          BUILD_NUMBER: ${{ $env.COMMIT_COUNT }}
 
       - name: Prune old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
