@@ -44,7 +44,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install deps
-        run: lerna bootstrap
+        run: yarn install --network-timeout 1000000
         
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
