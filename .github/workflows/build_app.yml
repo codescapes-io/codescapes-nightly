@@ -79,11 +79,7 @@ jobs:
         run: yarn install --network-timeout 1000000
 
       - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          package_root: ./packages/cs-electron/
-          args: -p always
+        run: yarn release
         env:
           CHANNEL: pre-alpha
           COMMIT_NUMBER: ${{ env.COMMIT_COUNT }}
