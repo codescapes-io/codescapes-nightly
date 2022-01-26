@@ -16,7 +16,8 @@
     ],
     "publish": {
       "provider": "github",
-      "repo": "codescapes-io/codescapes-nightly",
+      "owner": "codescapes-io",
+      "repo": "codescapes-nightly",
       "vPrefixedTagName": false
     }
   }
