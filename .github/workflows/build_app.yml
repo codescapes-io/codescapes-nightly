@@ -72,6 +72,18 @@ jobs:
           github_token: ${{ secrets.github_token }}
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
           package_root: ./packages/cs-electron/
+          
+      - name: Clean up build artifacts
+        run: |
+          set -e
+          
+          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe
+          sha=`sha256sum Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe | awk '{ print $1 }'`
+          echo "WIN_X64_SHA=$sha" >> $GITHUB_ENV
+          
+          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe.blockmap Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
+          
+          cp packages/cs-electron/dist/latest.yml latest.yml
 
       - name: Create release
         uses: softprops/action-gh-release@v1
@@ -80,8 +92,21 @@ jobs:
           name: Codescapes Preview r${{ env.COMMIT_COUNT }}
           body: |
             ### Commits
+            
             https://github.com/codescapes-io/codescapes/compare/${{ env.PREV_RELEASE_SHA }}...${{ env.CURRENT_SHA }}
+            
             ---
+            
+            ### Checksums
+            
+            | Variant | SHA-256 |
+            | ------- | ------- |
+            | x64 | ${{ env.WIN_X64_SHA }}
+          
+          files: |
+            Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe
+            Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
+            latest.yml
             
           draft: ${{ github.event.inputs.dry-run != '' }}
           prerelease: false
