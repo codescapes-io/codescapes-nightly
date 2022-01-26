@@ -46,6 +46,7 @@ jobs:
           view_top: 1
           
       - name: Prepare build
+        shell: bash
         run: |
           set -e
           
@@ -60,9 +61,9 @@ jobs:
           echo "PREV_RELEASE_SHA=$prev_release_sha" >> $GITHUB_ENV
           
           echo "COMMIT_LOGS<<{delimiter}
-          $(curl -H "Accept: application/vnd.github.v3+json" `
-            "https://api.github.com/repos/codescapes-io/codescapes/compare/$prev_release_sha...$current_sha" `
-            | jq '[.commits[]|{message:(.commit.message | split("\n")), username:.author.login}]' `
+          $(curl -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/codescapes-io/codescapes/compare/$prev_release_sha...$current_sha" \
+            | jq '[.commits[]|{message:(.commit.message | split("\n")), username:.author.login}]' \
             | jq -r '.[]|"- \(.message | first) (@\(.username))"')
           {delimiter}" >> $GITHUB_ENV
           
