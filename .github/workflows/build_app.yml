@@ -71,9 +71,9 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           package_root: ./packages/cs-electron/
-          args: -p onTagOrDraft
+          args: -p always
         env:
-          CHANNEL: preview
+          CHANNEL: pre-alpha
           COMMIT_NUMBER: ${{ env.COMMIT_COUNT }}
 
       - name: Prune old releases
