@@ -15,10 +15,10 @@
       "nsis"
     ],
     "publish": {
-      "provider": "github",
-      "owner": "codescapes-io",
-      "repo": "codescapes-nightly",
-      "vPrefixedTagName": false
+      "provider": "s3",
+      "bucket": "codescapes-build",
+      "region": "ap-southeast-1",
+      "path": "pre-alpha"
     }
   }
 }
