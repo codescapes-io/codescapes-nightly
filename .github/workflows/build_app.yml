@@ -47,7 +47,6 @@ jobs:
 
       - name: Prepare build
         run: |
-          set -e
           commit_count=$(git rev-list --count HEAD)
           echo "COMMIT_COUNT=$commit_count" >> $GITHUB_ENV
           current_sha=$(git rev-parse --short HEAD)
