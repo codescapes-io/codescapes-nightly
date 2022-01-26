@@ -70,8 +70,9 @@ jobs:
         uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.github_token }}
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
           package_root: ./packages/cs-electron/
+        env:
+          CI_PIPELINE_IID: r${{ env.COMMIT_COUNT }}
           
       - name: Clean up build artifacts
         shell: bash
