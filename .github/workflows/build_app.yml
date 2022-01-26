@@ -74,7 +74,7 @@ jobs:
           args: -p onTagOrDraft
         env:
           CHANNEL: preview
-          BUILD_NUMBER: ${{ env.COMMIT_COUNT }}
+          COMMIT_NUMBER: ${{ env.COMMIT_COUNT }}
 
       - name: Prune old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
