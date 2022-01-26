@@ -89,7 +89,7 @@ jobs:
           files: |
             Codescapes_0.0.1_nightly${{ env.COMMIT_COUNT }}_win_x64-setup.exe
             
-          draft: ${{ github.event.inputs.dry-run != '' }}
+          draft: ${{ github.event.inputs.dry-run }}
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
