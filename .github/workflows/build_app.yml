@@ -44,7 +44,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install deps
-        run: yarn install
+        run: lerna bootstrap
         
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
