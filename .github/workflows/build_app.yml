@@ -99,7 +99,7 @@ jobs:
           files: |
             packages/cs-electron/dist/*.exe
             packages/cs-electron/dist/*.exe.*
-            packages/cs-electron/dist/*.yml
+            packages/cs-electron/dist/latest.yml
             
           draft: ${{ github.event.inputs.dry-run }}
           prerelease: false
