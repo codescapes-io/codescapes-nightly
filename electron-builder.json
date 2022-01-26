@@ -1,7 +1,8 @@
 {
   "appId": "com.electron.codescapes",
-  "productName": "Codescapes (Early Access)",
+  "productName": "Codescapes",
   "copyright": "Copyright © KeDA-Tech",
+  "artifactName": "${productName}_${os}_${arch}-setup.${ext}"
   "files": [
     "build/**/*",
     "node_modules/**/*"
@@ -14,9 +15,9 @@
       "nsis"
     ],
     "publish": {
-      "provider": "s3",
-      "bucket": "codescapes-nightly",
-      "region": "ap-southeast-1"
+      "provider": "github",
+      "repo": "codescapes-io/codescapes-nightly",
+      "vPrefixedTagName": false
     }
   }
 }
