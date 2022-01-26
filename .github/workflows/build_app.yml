@@ -79,7 +79,7 @@ jobs:
           set -e
           
           cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe
-          sha=`sha256sum Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe | awk '{ print $1 }'`
+          sha=`sha256sum Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe | awk '{ print $1 }'`
           echo "WIN_X64_SHA=$sha" >> $GITHUB_ENV
           
           cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe.blockmap Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
