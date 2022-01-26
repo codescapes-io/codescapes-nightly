@@ -74,14 +74,15 @@ jobs:
           package_root: ./packages/cs-electron/
           
       - name: Clean up build artifacts
+        shell: bash
         run: |
           set -e
           
-          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe
+          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe
           sha=`sha256sum Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe | awk '{ print $1 }'`
           echo "WIN_X64_SHA=$sha" >> $GITHUB_ENV
           
-          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe.blockmap Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
+          cp packages/cs-electron/dist/Codescapes_win_x64-setup.exe.blockmap Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
           
           cp packages/cs-electron/dist/latest.yml latest.yml
 
@@ -104,8 +105,8 @@ jobs:
             | x64 | ${{ env.WIN_X64_SHA }}
           
           files: |
-            Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe
-            Codescapes_win_x64-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
+            Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe
+            Codescapes_win_x64-preview-r${{ env.COMMIT_COUNT }}-setup.exe.blockmap
             latest.yml
             
           draft: ${{ github.event.inputs.dry-run != '' }}
