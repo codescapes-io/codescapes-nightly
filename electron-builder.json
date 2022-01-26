@@ -2,7 +2,7 @@
   "appId": "com.electron.codescapes",
   "productName": "Codescapes",
   "copyright": "Copyright © KeDA-Tech",
-  "artifactName": "${productName}_${version}-${channel}.${buildNumber}_${os}_${arch}-setup.${ext}",
+  "artifactName": "${productName}_${version}-${env.CHANNEL}.${env.COMMIT_NUMBER}_${os}_${arch}-setup.${ext}",
   "files": [
     "build/**/*",
     "node_modules/**/*"
