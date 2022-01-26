@@ -93,7 +93,7 @@ jobs:
             packages/cs-electron/dist/*.exe.*
             packages/cs-electron/dist/*.yml
             
-          draft: ${{ github.event.inputs.dry-run != '' }}
+          draft: ${{ github.event.inputs.dry-run }}
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
