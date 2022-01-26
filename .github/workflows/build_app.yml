@@ -52,24 +52,6 @@ jobs:
           github_token: ${{ secrets.github_token }}
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
           package_root: ./packages/cs-electron/
-          
-      - name: Create release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: r${{ env.COMMIT_COUNT }}
-          name: Codescapes pre-alpha r${{ env.COMMIT_COUNT }}
-          body: |
-            ### Commits
-            https://github.com/codescapes-io/codescapes/compare/${{ env.PREV_RELEASE_SHA }}...${{ env.CURRENT_SHA }}
-            ${{ env.COMMIT_LOGS }}
-
-          files: |
-            Codescapes_0.0.1_nightly${{ env.COMMIT_COUNT }}_win_x64-setup.exe
-            
-          draft: ${{ github.event.inputs.dry-run }}
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prune old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
