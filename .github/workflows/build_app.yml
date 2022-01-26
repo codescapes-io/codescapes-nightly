@@ -71,8 +71,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           package_root: ./packages/cs-electron/
-        env:
-          CI_PIPELINE_IID: r${{ env.COMMIT_COUNT }}
+          args: -c.extraMetadata.version=r${{ env.COMMIT_COUNT }}
           
       - name: Clean up build artifacts
         shell: bash
