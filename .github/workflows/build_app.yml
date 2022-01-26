@@ -25,6 +25,7 @@ jobs:
         with:
           repository: 'codescapes-io/codescapes'
           fetch-depth: 0
+          ssh-key: ${{ secrets.PRIVATE_SSH_KEY }}
         if: github.event.inputs.git-ref == ''
         
       - name: Clone Repository (Custom Ref)
@@ -33,6 +34,7 @@ jobs:
         with:
           repository: 'codescapes-io/codescapes'
           fetch-depth: 0
+          ssh-key: ${{ secrets.PRIVATE_SSH_KEY }}
           ref: ${{ github.event.inputs.git-ref }}
 
       - name: Get previous release
