@@ -1,7 +1,7 @@
 name: Build job
 
 on:
-  # Every Saturday at 21:00 UTC
+  # Everyday at 23:00 UTC
   schedule:
     - cron: '0 23 * * *'
   # Manual triggers
