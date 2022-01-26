@@ -56,3 +56,42 @@ jobs:
           echo "COMMIT_COUNT=$commit_count" >> $GITHUB_ENV
           current_sha=$(git rev-parse --short HEAD)
           echo "CURRENT_SHA=$current_sha" >> $GITHUB_ENV
+          
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'yarn'
+
+      - name: Install deps
+        run: yarn install --network-timeout 1000000
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          package_root: ./packages/cs-electron/
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: r${{ env.COMMIT_COUNT }}
+          name: Codescapes Preview r${{ env.COMMIT_COUNT }}
+          body: |
+            ### Commits
+            https://github.com/codescapes-io/codescapes/compare/${{ env.PREV_RELEASE_SHA }}...${{ env.CURRENT_SHA }}
+            ---
+            
+          draft: ${{ github.event.inputs.dry-run != '' }}
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prune old releases
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          keep_latest: 28
+          delete_tags: true
