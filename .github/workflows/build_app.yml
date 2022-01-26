@@ -75,6 +75,25 @@ jobs:
         env:
           CHANNEL: pre-alpha
           COMMIT_NUMBER: ${{ env.COMMIT_COUNT }}
+          
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: pre-alpha.${{ env.COMMIT_COUNT }}
+          name: Codescapes pre-alpha.${{ env.COMMIT_COUNT }}
+          body: |
+            ### Commits
+            
+            https://github.com/codescapes-io/codescapes/compare/${{ env.PREV_RELEASE_SHA }}...${{ env.CURRENT_SHA }}
+            
+            ${{ env.COMMIT_LOGS }}
+            
+            ---
+            
+          draft: ${{ github.event.inputs.dry-run != '' }}
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prune old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
