@@ -87,8 +87,8 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: pre-alpha.${{ env.COMMIT_COUNT }}
-          name: Codescapes Preview ${{ env.COMMIT_COUNT }}
+          tag_name: r${{ env.COMMIT_COUNT }}
+          name: Codescapes Preview r${{ env.COMMIT_COUNT }}
           body: |
             ### Commits
             
