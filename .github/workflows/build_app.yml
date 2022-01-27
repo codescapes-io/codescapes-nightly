@@ -82,7 +82,7 @@ jobs:
         run: yarn release
         env:
           CHANNEL: pre-alpha
-          COMMIT_NUMBER: ${{ env.COMMIT_COUNT }}
+          CI_PIPELINE_IID: ${{ env.COMMIT_COUNT }}
           
       - name: Create release
         uses: softprops/action-gh-release@v1
