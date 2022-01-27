@@ -17,7 +17,8 @@
     "publish": {
       "provider": "github",
       "owner": "codescapes-io",
-      "repo": "codescapes-nightly"
+      "repo": "codescapes-nightly",
+      "private": false
     }
   }
 }
