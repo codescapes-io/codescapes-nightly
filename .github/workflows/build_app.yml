@@ -51,6 +51,7 @@ jobs:
           set -e
           
           curl https://raw.githubusercontent.com/codescapes-io/codescapes-nightly/master/electron-builder.json -o packages/cs-electron/electron-builder.json
+          echo "APP_VERSION=$(awk '/version/{gsub(/("|",)/,"",$2);print $2}' packages/cs-electron/package.json)" >> $GITHUB_ENV
           
           commit_count=$(git rev-list --count HEAD)
           echo "COMMIT_COUNT=$commit_count" >> $GITHUB_ENV
@@ -79,10 +80,9 @@ jobs:
         run: yarn install --network-timeout 1000000
 
       - name: Build/release Electron app
-        run: yarn release
+        run: lerna exec "yarn release ${{ env.APP_VERSION }}"
         env:
           GH_TOKEN: ${{ secrets.PA_TOKEN }}
-          CHANNEL: preview
           CI_PIPELINE_IID: ${{ env.COMMIT_COUNT }}
           
       - name: Create release
