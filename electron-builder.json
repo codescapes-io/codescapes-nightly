@@ -1,5 +1,5 @@
 {
-  "appId": "com.electron.codescapes.pre-alpha",
+  "appId": "com.electron.codescapes",
   "productName": "Codescapes",
   "copyright": "Copyright © KeDA-Tech",
   "artifactName": "${productName}_${version}-${env.CHANNEL}.${buildNumber}_${os}_${arch}-setup.${ext}",
@@ -15,10 +15,9 @@
       "nsis"
     ],
     "publish": {
-      "provider": "s3",
-      "bucket": "codescapes-build",
-      "region": "ap-southeast-1",
-      "path": "pre-alpha"
+      "provider": "github",
+      "owner": "codescapes-io",
+      "repo": "codescapes-nightly"
     }
   }
 }
