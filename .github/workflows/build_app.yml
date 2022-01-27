@@ -80,10 +80,9 @@ jobs:
         run: yarn install --network-timeout 1000000
 
       - name: Build/release Electron app
-        run: lerna exec "yarn release -c.extraMetadata.version=${{ env.APP_VERSION }}-preview"
+        run: lerna exec "yarn release -c.extraMetadata.version=${{ env.APP_VERSION }}-preview.${{ env.COMMIT_COUNT }}"
         env:
           GH_TOKEN: ${{ secrets.PA_TOKEN }}
-          CI_PIPELINE_IID: ${{ env.COMMIT_COUNT }}
           
       - name: Create release
         uses: softprops/action-gh-release@v1
