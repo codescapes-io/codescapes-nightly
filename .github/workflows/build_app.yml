@@ -80,7 +80,7 @@ jobs:
         run: yarn install --network-timeout 1000000
 
       - name: Build/release Electron app
-        run: lerna exec "yarn release ${{ env.APP_VERSION }}"
+        run: lerna exec "yarn release -c.extraMetadata.version=${{ env.APP_VERSION }}-preview"
         env:
           GH_TOKEN: ${{ secrets.PA_TOKEN }}
           CI_PIPELINE_IID: ${{ env.COMMIT_COUNT }}
