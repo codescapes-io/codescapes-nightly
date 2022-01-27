@@ -1,6 +1,6 @@
 {
   "appId": "com.electron.codescapes.pre-alpha",
-  "productName": "Codescapes (Pre-alpha)",
+  "productName": "Codescapes ${env.CHANNEL}.${env.COMMIT_NUMBER}",
   "copyright": "Copyright © KeDA-Tech",
   "artifactName": "Codescapes_${version}-${env.CHANNEL}.${env.COMMIT_NUMBER}_${os}_${arch}-setup.${ext}",
   "files": [
